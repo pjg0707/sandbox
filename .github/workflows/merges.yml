@@ -5,6 +5,13 @@ on:
     branches:
       - dev   # trigger when pushing to dev
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: write
+  pull-requests: write
+
+>>>>>>> f10a9ec (ci: add pull request workflow)
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
