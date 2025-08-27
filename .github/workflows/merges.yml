@@ -1,0 +1,21 @@
+name: Pull Request from dev to main
+
+on:
+  push:
+    branches:
+      - dev   # trigger when pushing to dev
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          base: main         # target branch
+          branch: dev        # source branch
+          title: "Sync dev into main"
+          body: "This PR was automatically created because of a push to dev."
