@@ -6,6 +6,8 @@ To use this repository, simply clone it to your local machine:
 
 ```sh
     git clone https://github.com/pjg0707/sandbox.git
+    cd sandbox
+    git checkout dev
 ```
 Feel free to add, modify, or experiment with any files as needed. No special setup is required.
 

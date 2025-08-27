@@ -1,0 +1,27 @@
+name: Merge Requests
+
+on:
+  push:
+    branches: [ dev ]   # when you push to dev
+
+# GITHUB_TOKEN needs permission to open/modify PRs
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dev-to-main-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Open/Update PR from dev to main
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "dev"
+          destination_branch: "main"
+          pr_title: "Sync dev to main"
+          pr_body: "This PR was auto-created on push to dev."
+          pr_assignee: "pjg0707"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
