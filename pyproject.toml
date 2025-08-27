@@ -17,8 +17,14 @@ dev = [
 requires = ["setuptools>=69", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.setuptools_scm]
-# Optional tweaks:
-# tag_scheme: use tags like "v1.2.3" or "1.2.3" (both work by default)
-# write_to can export the resolved version at runtime:
-write_to = "sandbox/_version.py"
+# write the resolved version into your package under src/
+#write_to = "src/sandbox/_version.py"
+# optional but nice when tags don't exist yet:
+fallback_version = "0.0.0"

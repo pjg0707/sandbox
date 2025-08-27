@@ -9,7 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # 👇 This must come first
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0   # IMPORTANT for version-from-Git
