@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest
+        language: python
+        # pre-commit makes a venv and installs these with pip
+        additional_dependencies: [
+          ".[dev]"        # installs your package plus dev deps from pyproject
+        ]
+        entry: pytest
+        args: ["-q"]      # add "-m", "unit" etc if you want markers
+        pass_filenames: false   # we want full test run, not per-file

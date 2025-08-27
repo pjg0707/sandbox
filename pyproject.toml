@@ -1,0 +1,24 @@
+[project]
+name = "sandbox"
+description = "A safe place to try random and small stuff that is not worth a dedicated repo (yet)."
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["version"]         # <- version comes from Git, not hard-coded here
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "pre-commit",
+]
+
+[build-system]
+requires = ["setuptools>=69", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+# Optional tweaks:
+# tag_scheme: use tags like "v1.2.3" or "1.2.3" (both work by default)
+# write_to can export the resolved version at runtime:
+write_to = "sandbox/_version.py"
