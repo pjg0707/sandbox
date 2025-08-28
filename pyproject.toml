@@ -32,8 +32,10 @@ line-length = 88
 [tool.ruff.lint]
 # Start pragmatic; expand later if you like.
 select = ["E", "F", "W", "I", "B", "UP"]
+
 # E,F,W: pycodestyle/pyflakes; I: isort; B: flake8-bugbear; UP: pyupgrade
 ignore = ["E501", "B007"]
+
 # keep E501 enabled, but demote it to "warning"
 extend-select = ["E501", "B007"]
 unfixable = ["E501", "B007"]
