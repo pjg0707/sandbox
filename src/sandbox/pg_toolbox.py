@@ -1,6 +1,22 @@
-import math
+import numpy as np
 
-from numerize import numerize
+
+def humanize_number(value, digits=2):
+    """Format a number with SI prefixes (k, M, G, etc.)."""
+    prefixes = [
+        (1e9, "G"),
+        (1e6, "M"),
+        (1e3, "k"),
+        (1, ""),
+        (1e-3, "m"),
+        (1e-6, "μ"),
+        (1e-9, "n"),
+        (1e-12, "p"),
+    ]
+    for factor, suffix in prefixes:
+        if abs(value) >= factor:
+            return f"{round(value / factor, digits)}{suffix}"
+    return f"{round(value, digits)}"
 
 
 class Toolbox:
@@ -8,22 +24,22 @@ class Toolbox:
     #    self.x = 1
 
     def f0_RC(self, R, C, string_needed=0, digits=2):
-        freq = 1 / (2 * math.pi * R * C)
+        freq = 1 / (2 * np.pi * R * C)
         if string_needed == 0:
             return freq
-        return numerize.numerize(freq, digits) + "Hz"
+        return humanize_number(freq, digits) + "Hz"
 
     def f0_LC(self, L, C, string_needed=0, digits=2):
-        freq = 1 / (2 * math.pi * math.sqrt(L * C))
+        freq = 1 / (2 * np.pi * np.sqrt(L * C))
         if string_needed == 0:
             return freq
-        return numerize.numerize(freq, digits) + "Hz"
+        return humanize_number(freq, digits) + "Hz"
 
     def f0_LR(self, L, R, string_needed=0, digits=2):
-        freq = R / (2 * math.pi * L)
+        freq = R / (2 * np.pi * L)
         if string_needed == 0:
             return freq
-        return numerize.numerize(freq, digits) + "Hz"
+        return humanize_number(freq, digits) + "Hz"
 
     def RPar(self, R1, R2):
         return R1 * R2 / (R1 + R2)
