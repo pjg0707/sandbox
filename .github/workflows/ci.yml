@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,10 +18,30 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install uv
+        run: pip install uv
+
       - name: Install dependencies with uv
         run: |
           pip install uv
           uv sync --extra dev
 
-      - name: Run pytest
+      - name: Ruff (lint)
+        run: uv run ruff check --exit-non-zero-on-fix .
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install uv
+        run: pip install uv
+      - name: Sync deps (dev)
+        run: uv sync --extra dev
+      - name: Pytest
         run: uv run pytest -q

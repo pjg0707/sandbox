@@ -1,13 +1,26 @@
 repos:
   - repo: local
     hooks:
+      - id: ruff
+        name: Ruff (lint, autofix)
+        language: system
+        entry: uv run ruff
+        args: ["check", "--fix", "--exit-non-zero-on-fix", "."]        
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: black
+        name: Black (format)
+        language: system
+        entry: uv run black
+        args: ["."]
+        pass_filenames: false
+        stages: [pre-commit]
+
       - id: pytest
-        name: Run pytest
-        language: python
-        # pre-commit makes a venv and installs these with pip
-        additional_dependencies: [
-          ".[dev]"        # installs your package plus dev deps from pyproject
-        ]
-        entry: pytest
-        args: ["-q"]      # add "-m", "unit" etc if you want markers
-        pass_filenames: false   # we want full test run, not per-file
+        name: Pytest (quick)
+        language: system
+        entry: uv run pytest
+        args: ["-q"]
+        pass_filenames: false
+        stages: [pre-commit]
