@@ -1,6 +1,10 @@
 # Welcome to the Sandbox repo!
 A safe place to try random and small stuff that is not worth a dedicated repo (yet).
 
+![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pjg0707/sandbox/merges.yml?branch=dev)
+![Release](https://img.shields.io/github/v/release/pjg0707/sandbox)
+
 ## Getting Started
 To use this repository, simply clone it to your local machine:
 
